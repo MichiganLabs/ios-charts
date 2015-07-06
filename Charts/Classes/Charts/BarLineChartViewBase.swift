@@ -1642,7 +1642,7 @@ internal class BarLineChartFillFormatter: NSObject, ChartFillFormatter
 
         if (dataSet.isDrawFillInverted)
         {
-            fillBaseline = chartMaxY;
+            fillBaseline = CGFloat(chartMaxY)
         }
         else
         {
