@@ -34,6 +34,9 @@ public class LineChartDataSet: LineRadarChartDataSet
     
     public var drawCircleHoleEnabled = true
     
+    /// if true, the fill will be drawn inverted
+    public var drawFillInverted = false
+    
     public override init()
     {
         super.init()
@@ -100,6 +103,16 @@ public class LineChartDataSet: LineRadarChartDataSet
     public var isDrawCubicEnabled: Bool { return drawCubicEnabled; }
     
     public var isDrawCircleHoleEnabled: Bool { return drawCircleHoleEnabled; }
+    
+    /// Set to true if the DataSet should be drawn filled (surface), and not
+    /// just as a line, disabling this will give great performance boost!
+    public func setDrawFillInverted(var inverted: Bool)
+    {
+        drawFillInverted = inverted
+    }
+
+    /// returns true if filled drawing is enabled, false if not
+    public var isDrawFillInverted: Bool { return drawFillInverted; }
     
     // MARK: NSCopying
     

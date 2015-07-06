@@ -1638,44 +1638,51 @@ internal class BarLineChartFillFormatter: NSObject, ChartFillFormatter
     
     internal func getFillLinePosition(#dataSet: LineChartDataSet, data: LineChartData, chartMaxY: Double, chartMinY: Double) -> CGFloat
     {
-        var fillMin = CGFloat(0.0)
-        
-        if (dataSet.yMax > 0.0 && dataSet.yMin < 0.0)
+        var fillBaseline = CGFloat(0.0)
+
+        if (dataSet.isDrawFillInverted)
         {
-            fillMin = 0.0
+            fillBaseline = chartMaxY;
         }
         else
         {
-            if (!_chart.getAxis(dataSet.axisDependency).isStartAtZeroEnabled)
+            if (dataSet.yMax > 0.0 && dataSet.yMin < 0.0)
             {
-                var max: Double, min: Double
-                
-                if (data.yMax > 0.0)
-                {
-                    max = 0.0
-                }
-                else
-                {
-                    max = chartMaxY
-                }
-                
-                if (data.yMin < 0.0)
-                {
-                    min = 0.0
-                }
-                else
-                {
-                    min = chartMinY
-                }
-                
-                fillMin = CGFloat(dataSet.yMin >= 0.0 ? min : max)
+                fillBaseline = 0.0
             }
             else
             {
-                fillMin = 0.0
+                if (!_chart.getAxis(dataSet.axisDependency).isStartAtZeroEnabled)
+                {
+                    var max: Double, min: Double
+
+                    if (data.yMax > 0.0)
+                    {
+                        max = 0.0
+                    }
+                    else
+                    {
+                        max = chartMaxY
+                    }
+
+                    if (data.yMin < 0.0)
+                    {
+                        min = 0.0
+                    }
+                    else
+                    {
+                        min = chartMinY
+                    }
+
+                    fillBaseline = CGFloat(dataSet.yMin >= 0.0 ? min : max)
+                }
+                else
+                {
+                    fillBaseline = 0.0
+                }
             }
         }
-        
-        return fillMin
+
+        return fillBaseline
     }
 }
