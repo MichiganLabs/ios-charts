@@ -126,6 +126,7 @@ public class LineChartDataSet: LineRadarChartDataSet
         copy.lineDashLengths = lineDashLengths
         copy.drawCirclesEnabled = drawCirclesEnabled
         copy.drawCubicEnabled = drawCubicEnabled
+        copy.drawFillInverted = drawFillInverted
         return copy
     }
 }
